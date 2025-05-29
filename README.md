@@ -15,32 +15,26 @@ Ela encontra uma plataforma que oferece autonomia, segurança e discrição, per
 ---
 
 ## Diagrama de Classes (Domínio da API)
-```mermaid
+classDiagram
 class User {
-    -String fullname
-    -String cpf
-    -Integer age
-    -String email
-    -String contact
-    -String state
-    -String gender
-  }
+-String fullname
+-String cpf
+-Integer age
+-String email
+-String contact
+-String state
+-String gender
+}
 
-  class Artist {
-    -String jobName
-    -Integer age
-    -String gender
-    -String state
-    -String description
-    -Double pricePerHour
-    -String state
-    -String targetAudience
-
-  }
-
-  User "1" *-- "1" Artist : has
-
-  ```
+    class Artist {
+        -String jobName
+        -Integer age
+        -String gender
+        -String state
+        -String description
+        -Double pricePerHour
+        -String targetAudiences
+    }
 
 ---
 
