@@ -15,6 +15,7 @@ Ela encontra uma plataforma que oferece autonomia, segurança e discrição, per
 ---
 
 ## Diagrama de Classes (Domínio da API)
+```mermaid 
 classDiagram
 ```mermaid
 direction RL
