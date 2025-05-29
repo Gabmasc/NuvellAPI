@@ -16,8 +16,9 @@ Ela encontra uma plataforma que oferece autonomia, segurança e discrição, per
 
 ## Diagrama de Classes (Domínio da API)
 classDiagram
+```mermaid
 direction RL
-class USerEscort {
+class UserEscort {
     -id : id
     -String fullName : fullName
     -String cpf : cpf
@@ -37,7 +38,8 @@ class Artist{
     -Double pricePerHour : pricePerHour
     -String targetAudiences : targetAudiences
 }
-UserEscort "1" --o "1" Artist
+Artist "1" --> "1" UserEscort
+```
 ---
 
 ## 🧠 Funcionalidades/Detalhes
@@ -72,6 +74,13 @@ A API permite o cadastro de mulheres com os seguintes dados:
 - Banco de dados (SQL - MySQL)
 - Maven
 - Swagger (API Documentation)
+---
+
+## 🚀 Melhorias Futuras
+- Alteração do tipo de retorno 
+- Implementação de **Swagger** para documentação interativa da API.
+- Autenticação e autorização com **JWT**.
+- Deploy da API em um serviço cloud.
 
 ---
 
