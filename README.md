@@ -17,7 +17,7 @@ Ela encontra uma plataforma que oferece autonomia, segurança e discrição, per
 ## Diagrama de Classes (Domínio da API)
 ```mermaid 
 classDiagram
-class USerEscort {
+class UserEscort {
     -id : id
     -String fullName : fullName
     -String cpf : cpf
