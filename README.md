@@ -37,7 +37,7 @@ class Artist{
     -Double pricePerHour : pricePerHour
     -String targetAudiences : targetAudiences
 }
-UserEscort "1" --> "1" Artist
+Artist "1" --> "1" UserEscort
 ```
 ---
 
