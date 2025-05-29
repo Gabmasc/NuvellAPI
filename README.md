@@ -16,26 +16,28 @@ Ela encontra uma plataforma que oferece autonomia, segurança e discrição, per
 
 ## Diagrama de Classes (Domínio da API)
 classDiagram
-class User {
--String fullname
--String cpf
--Integer age
--String email
--String contact
--String state
--String gender
+direction RL
+class USerEscort {
+    -id : id
+    -String fullName : fullName
+    -String cpf : cpf
+    -Integer age : age
+    -String email : email
+    -String contact : contact
+    -String state : state
+    -String gender : gender
 }
-
-    class Artist {
-        -String jobName
-        -Integer age
-        -String gender
-        -String state
-        -String description
-        -Double pricePerHour
-        -String targetAudiences
-    }
-
+class Artist{
+    -id : id
+    -jobName : string
+    -Integer age : age
+    -String gender : gender
+    -String state : state
+    -String description : description
+    -Double pricePerHour : pricePerHour
+    -String targetAudiences : targetAudiences
+}
+UserEscort "1" --o "1" Artist
 ---
 
 ## 🧠 Funcionalidades/Detalhes
