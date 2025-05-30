@@ -20,11 +20,12 @@ public class GenderUtils {
         String gender3 = "trans";
 
         validateGenderIfIsEmpty(gender);
-        this.gender = gender;
 
         if (!gender.equals(gender1) && !gender.equals(gender2) && !gender.equals(gender3)){
             throw new IllegalArgumentException("Value not accepted.");
         }
+
+        this.gender = gender;
 
     }
     public void validateGenderIfIsEmpty(String gender){
@@ -36,5 +37,10 @@ public class GenderUtils {
 
     public String getValue(){
         return gender;
+    }
+
+    public void updateGender(String newGender){
+         validateGender(newGender);
+         this.gender = newGender;
     }
 }

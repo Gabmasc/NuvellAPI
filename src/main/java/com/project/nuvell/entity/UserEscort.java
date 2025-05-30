@@ -1,6 +1,7 @@
 package com.project.nuvell.entity;
 
 import com.project.nuvell.entity.utiLS.AgeUtiLs;
+import com.project.nuvell.entity.utiLS.ContactUtiLs;
 import com.project.nuvell.entity.utiLS.CpfUtiLS;
 import com.project.nuvell.entity.utiLS.GenderUtils;
 import jakarta.annotation.Nullable;
@@ -21,31 +22,37 @@ public class UserEscort implements Serializable {
     private String fullName;
 
     @Embedded
-    @Column(nullable = false)
+    @AttributeOverrides({
+            @AttributeOverride(name = "value", column = @Column(name = "cpf", nullable = false))
+    })
     private CpfUtiLS cpf;
 
     @Embedded
-    @Column(nullable = false)
+    @AttributeOverrides({
+            @AttributeOverride(name = "value", column = @Column(name = "age", nullable = false))
+    })
     private AgeUtiLs age;
 
     @Column(nullable = false)
     private String email;
 
     @Column(nullable = false)
-    private String contact;
+    private ContactUtiLs contact;
 
     @Column(nullable = false)
     private String state;
 
     @Embedded
-    @Column(nullable = false)
+    @AttributeOverrides({
+            @AttributeOverride(name = "value", column = @Column(name = "gender", nullable = false))
+    })
     private GenderUtils gender;
 
 
     public UserEscort() {
     }
 
-    public UserEscort(Long id, String fullName, CpfUtiLS cpf, AgeUtiLs age, String email, String contact, String state, GenderUtils gender) {
+    public UserEscort(Long id, String fullName, CpfUtiLS cpf, AgeUtiLs age, String email, ContactUtiLs contact, String state, GenderUtils gender) {
         Id = id;
         this.fullName = fullName;
         this.cpf = cpf;
@@ -76,20 +83,8 @@ public class UserEscort implements Serializable {
         return this.cpf.getValue();
     }
 
-    public void updateCpf(String newCpf) {
-        cpf.updateValue(newCpf);
-
-        getCpf();
-    }
-
     public Integer getAge() {
         return this.age.getValue();
-    }
-
-    public void updateAge(Integer newAge){
-        age.updateAge(newAge);
-
-        getAge();
     }
 
     public String getEmail() {
@@ -101,12 +96,14 @@ public class UserEscort implements Serializable {
     }
 
     public String getContact() {
-        return contact;
+        return this.contact.getValue();
     }
 
+    /*
     public void setContact(String contact) {
         this.contact = contact;
     }
+    */
 
     public String getState() {
         return state;
@@ -120,11 +117,28 @@ public class UserEscort implements Serializable {
         return gender.getValue();
     }
 
-    public void updateGender(GenderUtils newGender){
-        if (newGender == null){
-            throw  new IllegalArgumentException("Dont be null");
-        }
-        this.gender = newGender;
+
+    public void updateCpf(String newCpf) {
+        cpf.updateValue(newCpf);
+    }
+    public void updateAge(Integer newAge){
+        age.updateAge(newAge);
+    }
+
+    public void updateEmail(String newEmail){
+
+    }
+
+    public void updateContact(String newContact){
+
+    }
+
+    public void updateState(String newState){
+
+    }
+
+    public void updateGender(String newGender){
+        gender.updateGender(newGender);
     }
 
     @Override
