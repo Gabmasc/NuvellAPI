@@ -99,12 +99,6 @@ public class UserEscort implements Serializable {
         return this.contact.getValue();
     }
 
-    /*
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
-    */
-
     public String getState() {
         return state;
     }
@@ -130,7 +124,7 @@ public class UserEscort implements Serializable {
     }
 
     public void updateContact(String newContact){
-
+        contact.updateContact(newContact);
     }
 
     public void updateState(String newState){

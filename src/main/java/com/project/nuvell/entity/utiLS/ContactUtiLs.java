@@ -41,4 +41,13 @@ public class ContactUtiLs {
     public String getValue(){
         return contact;
     }
+
+    public void updateContact(String newContact){
+        if (newContact.isEmpty()){
+            throw new IllegalArgumentException("Cant be null");
+        }
+
+        validateContact(newContact);
+        this.contact = newContact;
+    }
 }
