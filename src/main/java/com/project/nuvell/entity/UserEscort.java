@@ -86,6 +86,12 @@ public class UserEscort implements Serializable {
         return this.age.getValue();
     }
 
+    public void updateAge(Integer newAge){
+        age.updateAge(newAge);
+
+        getAge();
+    }
+
     public String getEmail() {
         return email;
     }

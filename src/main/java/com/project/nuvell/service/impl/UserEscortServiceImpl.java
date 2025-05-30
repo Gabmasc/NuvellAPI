@@ -61,6 +61,7 @@ public class UserEscortServiceImpl implements UserEscortService {
 
         // userInDatabase.setFullName(userToUpdate.getFullName());
         userInDatabase.updateCpf(userToUpdate.getCpf());
+        userInDatabase.updateAge(userToUpdate.getAge());
         // userInDatabase.updateGender(new GenderUtils());
 
         return userEscortRepository.save(userInDatabase);

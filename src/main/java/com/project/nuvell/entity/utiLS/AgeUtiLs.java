@@ -28,4 +28,8 @@ public class AgeUtiLs {
         return age;
     }
 
+    public void updateAge(Integer newAge){
+        this.age = newAge;
+    }
+
 }
