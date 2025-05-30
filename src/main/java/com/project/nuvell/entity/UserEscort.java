@@ -1,5 +1,9 @@
 package com.project.nuvell.entity;
 
+import com.project.nuvell.entity.utiLS.AgeUtiLs;
+import com.project.nuvell.entity.utiLS.CpfUtiLS;
+import com.project.nuvell.entity.utiLS.GenderUtils;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -16,11 +20,13 @@ public class UserEscort implements Serializable {
     @Column(nullable = false)
     private String fullName;
 
+    @Embedded
     @Column(nullable = false)
-    private String cpf;
+    private CpfUtiLS cpf;
 
+    @Embedded
     @Column(nullable = false)
-    private Integer age;
+    private AgeUtiLs age;
 
     @Column(nullable = false)
     private String email;
@@ -31,14 +37,15 @@ public class UserEscort implements Serializable {
     @Column(nullable = false)
     private String state;
 
+    @Embedded
     @Column(nullable = false)
-    private String gender;
+    private GenderUtils gender;
 
 
     public UserEscort() {
     }
 
-    public UserEscort(Long id, String fullName, String cpf, Integer age, String email, String contact, String state, String gender) {
+    public UserEscort(Long id, String fullName, CpfUtiLS cpf, AgeUtiLs age, String email, String contact, String state, GenderUtils gender) {
         Id = id;
         this.fullName = fullName;
         this.cpf = cpf;
@@ -66,19 +73,17 @@ public class UserEscort implements Serializable {
     }
 
     public String getCpf() {
-        return cpf;
+        return this.cpf.getValue();
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void updateCpf(String newCpf) {
+        cpf.updateValue(newCpf);
+
+        getCpf();
     }
 
     public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
+        return this.age.getValue();
     }
 
     public String getEmail() {
@@ -106,11 +111,14 @@ public class UserEscort implements Serializable {
     }
 
     public String getGender() {
-        return gender;
+        return gender.getValue();
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void updateGender(GenderUtils newGender){
+        if (newGender == null){
+            throw  new IllegalArgumentException("Dont be null");
+        }
+        this.gender = newGender;
     }
 
     @Override

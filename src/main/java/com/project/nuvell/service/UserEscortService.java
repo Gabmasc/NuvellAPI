@@ -11,8 +11,9 @@ public interface UserEscortService {
     UserEscort findById(Long id);
 
     UserEscort create(UserEscort userEscort);
-
-    UserEscort update(Long id ,UserEscort userToUpdate);
+    UserEscort update(UserEscort userToUpdate);
 
     void delete(Long id);
+
+
 }

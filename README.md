@@ -78,7 +78,7 @@ A API permite o cadastro de mulheres com os seguintes dados:
 ---
 
 ## 🚀 Melhorias Futuras
-- Alteração do tipo de retorno 
+- Alteração dos tipos de atributos da classe
 - Implementação de **Swagger** para documentação interativa da API.
 - Autenticação e autorização com **JWT**.
 - Deploy da API em um serviço cloud.

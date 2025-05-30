@@ -44,10 +44,11 @@ public class UserEscortController {
 
     @PutMapping("/{id}")
     public ResponseEntity<UserEscort> update(@PathVariable Long id, @RequestBody UserEscort userToUpdate){
-        var user = service.update(id, userToUpdate);
+        var user = service.update(userToUpdate);
         return ResponseEntity.ok(user);
     }
 
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
