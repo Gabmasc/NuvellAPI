@@ -1,9 +1,6 @@
 package com.project.nuvell.entity;
 
-import com.project.nuvell.entity.utiLS.AgeUtiLs;
-import com.project.nuvell.entity.utiLS.ContactUtiLs;
-import com.project.nuvell.entity.utiLS.CpfUtiLS;
-import com.project.nuvell.entity.utiLS.GenderUtils;
+import com.project.nuvell.entity.utiLS.*;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
@@ -36,11 +33,17 @@ public class UserEscort implements Serializable {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "value", column = @Column(name = "contact", nullable = false))
+    })
     private ContactUtiLs contact;
 
-    @Column(nullable = false)
-    private String state;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "value", column = @Column(name = "state", nullable = false))
+    })
+    private StateUtiLS state;
 
     @Embedded
     @AttributeOverrides({
@@ -52,7 +55,7 @@ public class UserEscort implements Serializable {
     public UserEscort() {
     }
 
-    public UserEscort(Long id, String fullName, CpfUtiLS cpf, AgeUtiLs age, String email, ContactUtiLs contact, String state, GenderUtils gender) {
+    public UserEscort(Long id, String fullName, CpfUtiLS cpf, AgeUtiLs age, String email, ContactUtiLs contact, StateUtiLS state, GenderUtils gender) {
         Id = id;
         this.fullName = fullName;
         this.cpf = cpf;
@@ -95,18 +98,10 @@ public class UserEscort implements Serializable {
         this.email = email;
     }
 
-    public String getContact() {
-        return this.contact.getValue();
-    }
-
+    public String getContact() { return this.contact.getValue();}
     public String getState() {
-        return state;
+        return state.getValue();
     }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
     public String getGender() {
         return gender.getValue();
     }
@@ -118,19 +113,14 @@ public class UserEscort implements Serializable {
     public void updateAge(Integer newAge){
         age.updateAge(newAge);
     }
-
     public void updateEmail(String newEmail){
-
     }
-
     public void updateContact(String newContact){
         contact.updateContact(newContact);
     }
-
     public void updateState(String newState){
-
+        state.updateValue(newState);
     }
-
     public void updateGender(String newGender){
         gender.updateGender(newGender);
     }
