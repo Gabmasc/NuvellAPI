@@ -51,15 +51,14 @@ public class UserEscortServiceImpl implements UserEscortService {
     }
 
 
+    @Transactional
     @Override
      public UserEscort update(UserEscort userToUpdate) {
         logger.info("Updating a User Escort");
 
-
         UserEscort userInDatabase = userEscortRepository.findById(userToUpdate.getId()).orElseThrow();
 
-
-        // userInDatabase.setFullName(userToUpdate.getFullName());
+        userInDatabase.updateName(userToUpdate.getFullName());
         userInDatabase.updateCpf(userToUpdate.getCpf());
         userInDatabase.updateAge(userToUpdate.getAge());
         userInDatabase.updateContact(userToUpdate.getContact());

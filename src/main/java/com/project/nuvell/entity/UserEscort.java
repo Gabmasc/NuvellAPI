@@ -15,8 +15,11 @@ public class UserEscort implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @Column(nullable = false)
-    private String fullName;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "value", column = @Column(name = "name", nullable = false))
+    })
+    private NameUtiLS fullName;
 
     @Embedded
     @AttributeOverrides({
@@ -55,7 +58,7 @@ public class UserEscort implements Serializable {
     public UserEscort() {
     }
 
-    public UserEscort(Long id, String fullName, CpfUtiLS cpf, AgeUtiLs age, String email, ContactUtiLs contact, StateUtiLS state, GenderUtils gender) {
+    public UserEscort(Long id, NameUtiLS fullName, CpfUtiLS cpf, AgeUtiLs age, String email, ContactUtiLs contact, StateUtiLS state, GenderUtils gender) {
         Id = id;
         this.fullName = fullName;
         this.cpf = cpf;
@@ -69,25 +72,24 @@ public class UserEscort implements Serializable {
     public Long getId() {
         return Id;
     }
-
     public void setId(Long id) {
         Id = id;
     }
-
     public String getFullName() {
-        return fullName;
+        return fullName.getValue();
     }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
     public String getCpf() {
         return this.cpf.getValue();
     }
-
     public Integer getAge() {
         return this.age.getValue();
+    }
+    public String getContact() { return this.contact.getValue();}
+    public String getState() {
+        return state.getValue();
+    }
+    public String getGender() {
+        return gender.getValue();
     }
 
     public String getEmail() {
@@ -98,13 +100,7 @@ public class UserEscort implements Serializable {
         this.email = email;
     }
 
-    public String getContact() { return this.contact.getValue();}
-    public String getState() {
-        return state.getValue();
-    }
-    public String getGender() {
-        return gender.getValue();
-    }
+
 
 
     public void updateCpf(String newCpf) {
@@ -114,6 +110,8 @@ public class UserEscort implements Serializable {
         age.updateAge(newAge);
     }
     public void updateEmail(String newEmail){
+    }public void updateName(String newName){
+        fullName.updateName(newName);
     }
     public void updateContact(String newContact){
         contact.updateContact(newContact);

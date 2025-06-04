@@ -23,6 +23,7 @@ public class StateUtiLS {
     }
 
     public void validateValue(String value){
+
         if (value.isEmpty() || StateOfBrazil.stream().noneMatch(v -> v.matches(value)))
             throw new IllegalArgumentException("Estado Invalido");
 
