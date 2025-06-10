@@ -42,8 +42,11 @@ public class UserEscort implements Serializable {
     })
     private AgeUtiLs age;
 
-    @Column(nullable = false)
-    private String email;
+    @Embedded
+    @AttributeOverrides(
+            @AttributeOverride(name = "value", column = @Column(name = "e-mail", nullable = false))
+    )
+    private EmailUtiLS email;
 
     @Embedded
     @AttributeOverrides({
@@ -67,7 +70,8 @@ public class UserEscort implements Serializable {
     public UserEscort() {
     }
 
-    public UserEscort(Long id, FirstNameUtiLS firstName, LastNameUtiLS lastName, SocialNameUtiLS socialName ,CpfUtiLS cpf, AgeUtiLs age, String email, ContactUtiLs contact, StateUtiLS state, GenderUtils gender) {
+    public UserEscort(Long id, FirstNameUtiLS firstName, LastNameUtiLS lastName, SocialNameUtiLS socialName ,CpfUtiLS cpf,
+                      AgeUtiLs age, EmailUtiLS email, ContactUtiLs contact, StateUtiLS state, GenderUtils gender) {
         Id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -98,22 +102,14 @@ public class UserEscort implements Serializable {
     public String getContact() { return this.contact.getValue();}
     public String getState() { return state.getValue();}
     public String getGender() { return gender.getValue();}
-    public String getEmail() {
-        return email;
-    }
+    public String getEmail() { return email.getValue();}
 
     public void updateFirstName(String newName){ firstName.updateFirstName(newName);}
     public void updateLastName(String newName){ lastName.updateLastName(newName);}
     public void updateSocialName(String newName){ socialName.updateSocialName(newName);}
-    public void updateCpf(String newCpf) {
-        cpf.updateValue(newCpf);
-    }
-    public void updateAge(Integer newAge){
-        age.updateAge(newAge);
-    }
-    public void updateEmail(String newEmail){
-    }
-
+    public void updateCpf(String newCpf) { cpf.updateValue(newCpf);}
+    public void updateAge(Integer newAge){ age.updateAge(newAge);}
+    public void updateEmail(String newEmail){ email.updateEmail(newEmail);}
     public void updateContact(String newContact){
         contact.updateContact(newContact);
     }
