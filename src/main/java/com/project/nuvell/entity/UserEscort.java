@@ -1,9 +1,7 @@
 package com.project.nuvell.entity;
 
 import com.project.nuvell.entity.utiLS.*;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -17,9 +15,20 @@ public class UserEscort implements Serializable {
 
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "value", column = @Column(name = "name", nullable = false))
+            @AttributeOverride(name = "value", column = @Column(name = "Firstname", nullable = false))
     })
-    private NameUtiLS fullName;
+    private FirstNameUtiLS firstName;
+    @Embedded
+    @AttributeOverrides(
+            @AttributeOverride(name = "value", column = @Column(name = "Lastname", nullable = false))
+    )
+    private LastNameUtiLS lastName;
+
+    @Embedded
+    @AttributeOverrides(
+            @AttributeOverride(name = "value", column = @Column(name = "Socialname", nullable = false))
+    )
+    private SocialNameUtiLS socialName;
 
     @Embedded
     @AttributeOverrides({
@@ -58,9 +67,11 @@ public class UserEscort implements Serializable {
     public UserEscort() {
     }
 
-    public UserEscort(Long id, NameUtiLS fullName, CpfUtiLS cpf, AgeUtiLs age, String email, ContactUtiLs contact, StateUtiLS state, GenderUtils gender) {
+    public UserEscort(Long id, FirstNameUtiLS firstName, LastNameUtiLS lastName, SocialNameUtiLS socialName ,CpfUtiLS cpf, AgeUtiLs age, String email, ContactUtiLs contact, StateUtiLS state, GenderUtils gender) {
         Id = id;
-        this.fullName = fullName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.socialName = socialName;
         this.cpf = cpf;
         this.age = age;
         this.email = email;
@@ -72,37 +83,28 @@ public class UserEscort implements Serializable {
     public Long getId() {
         return Id;
     }
+
     public void setId(Long id) {
         Id = id;
     }
-    public String getFullName() {
-        return fullName.getValue();
-    }
-    public String getCpf() {
-        return this.cpf.getValue();
-    }
-    public Integer getAge() {
-        return this.age.getValue();
-    }
-    public String getContact() { return this.contact.getValue();}
-    public String getState() {
-        return state.getValue();
-    }
-    public String getGender() {
-        return gender.getValue();
-    }
 
+    public String getFirstName() {
+        return firstName.getValue();
+    }
+    public String getLastName() { return lastName.getValue();}
+    public String getSocialName() { return socialName.getValue();}
+    public String getCpf() { return this.cpf.getValue();}
+    public Integer getAge() { return this.age.getValue();}
+    public String getContact() { return this.contact.getValue();}
+    public String getState() { return state.getValue();}
+    public String getGender() { return gender.getValue();}
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-
-
-
+    public void updateFirstName(String newName){ firstName.updateFirstName(newName);}
+    public void updateLastName(String newName){ lastName.updateLastName(newName);}
+    public void updateSocialName(String newName){ socialName.updateSocialName(newName);}
     public void updateCpf(String newCpf) {
         cpf.updateValue(newCpf);
     }
@@ -110,9 +112,8 @@ public class UserEscort implements Serializable {
         age.updateAge(newAge);
     }
     public void updateEmail(String newEmail){
-    }public void updateName(String newName){
-        fullName.updateName(newName);
     }
+
     public void updateContact(String newContact){
         contact.updateContact(newContact);
     }
