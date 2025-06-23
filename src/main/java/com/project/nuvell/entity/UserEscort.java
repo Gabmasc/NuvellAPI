@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity(name = "tb_UserEscort")
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"cpf", "email", "contact"})})
 public class UserEscort implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -30,7 +31,7 @@ public class UserEscort implements Serializable {
 
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "value", column = @Column(name = "cpf", nullable = false))
+            @AttributeOverride(name = "value", column = @Column(name = "cpf", nullable = false, unique = true))
     })
     private Cpf cpf;
 
@@ -42,13 +43,13 @@ public class UserEscort implements Serializable {
 
     @Embedded
     @AttributeOverrides(
-            @AttributeOverride(name = "value", column = @Column(name = "Email", nullable = false))
+            @AttributeOverride(name = "value", column = @Column(name = "Email", nullable = false, unique = true))
     )
     private Email email;
 
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "value", column = @Column(name = "contact", nullable = false))
+            @AttributeOverride(name = "value", column = @Column(name = "contact", nullable = false, unique = true))
     })
     private Contact contact;
 
