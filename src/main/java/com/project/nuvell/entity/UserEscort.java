@@ -11,68 +11,66 @@ public class UserEscort implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "value", column = @Column(name = "Firstname", nullable = false))
-    })
-    private FirstNameUtiLS firstName;
+    @AttributeOverride(name = "value", column = @Column(name = "Firstname", nullable = false))
+    private FirstName firstName;
     @Embedded
     @AttributeOverrides(
             @AttributeOverride(name = "value", column = @Column(name = "Lastname", nullable = false))
     )
-    private LastNameUtiLS lastName;
+    private LastName lastName;
 
     @Embedded
     @AttributeOverrides(
             @AttributeOverride(name = "value", column = @Column(name = "Socialname", nullable = false))
     )
-    private SocialNameUtiLS socialName;
+    private SocialName socialName;
 
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "value", column = @Column(name = "cpf", nullable = false))
     })
-    private CpfUtiLS cpf;
+    private Cpf cpf;
 
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "value", column = @Column(name = "age", nullable = false))
     })
-    private AgeUtiLs age;
+    private Age age;
 
     @Embedded
     @AttributeOverrides(
-            @AttributeOverride(name = "value", column = @Column(name = "e-mail", nullable = false))
+            @AttributeOverride(name = "value", column = @Column(name = "Email", nullable = false))
     )
-    private EmailUtiLS email;
+    private Email email;
 
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "value", column = @Column(name = "contact", nullable = false))
     })
-    private ContactUtiLs contact;
+    private Contact contact;
 
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "value", column = @Column(name = "state", nullable = false))
     })
-    private StateUtiLS state;
+    private State state;
 
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "value", column = @Column(name = "gender", nullable = false))
     })
-    private GenderUtils gender;
+    private Gender gender;
 
 
     public UserEscort() {
     }
 
-    public UserEscort(Long id, FirstNameUtiLS firstName, LastNameUtiLS lastName, SocialNameUtiLS socialName ,CpfUtiLS cpf,
-                      AgeUtiLs age, EmailUtiLS email, ContactUtiLs contact, StateUtiLS state, GenderUtils gender) {
-        Id = id;
+    public UserEscort(FirstName firstName, LastName lastName, SocialName socialName , Cpf cpf,
+                      Age age, Email email, Contact contact, State state, Gender gender) {
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.socialName = socialName;
@@ -85,11 +83,7 @@ public class UserEscort implements Serializable {
     }
 
     public Long getId() {
-        return Id;
-    }
-
-    public void setId(Long id) {
-        Id = id;
+        return id;
     }
 
     public String getFirstName() {
@@ -125,11 +119,11 @@ public class UserEscort implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserEscort that = (UserEscort) o;
-        return Objects.equals(Id, that.Id);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Id);
+        return Objects.hash(id);
     }
 }

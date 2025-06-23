@@ -6,16 +6,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Embeddable
-public class FirstNameUtiLS {
+public class LastName {
 
-    private String firtsname;
+    private String lastname;
 
-    public FirstNameUtiLS() {
+    public LastName() {
     }
 
-    public FirstNameUtiLS(String firtsname) {
-        validateName(firtsname);
-        this.firtsname = firtsname;
+    public LastName(String lastname) {
+        validateName(lastname);
+        this.lastname = lastname;
     }
 
     public void validateName(String nameInput){
@@ -29,15 +29,15 @@ public class FirstNameUtiLS {
             throw new IllegalArgumentException("Invalid Input");
         }
 
-        this.firtsname = nameInput;
+        this.lastname = nameInput;
     }
 
     public String getValue(){
-        return firtsname;
+        return lastname;
     }
 
-    public void updateFirstName(String newName){
+    public void updateLastName(String newName){
         validateName(newName);
-        this.firtsname = newName;
+        this.lastname = newName;
     }
 }

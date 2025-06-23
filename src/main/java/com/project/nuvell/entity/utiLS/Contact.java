@@ -6,14 +6,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Embeddable
-public class ContactUtiLs {
+public class Contact {
 
     private String contact;
 
-    public ContactUtiLs() {
+    public Contact() {
     }
 
-    public ContactUtiLs(String contact) {
+    public Contact(String contact) {
         if (validateContact(contact))
             this.contact = formattedContact(contact);
     }

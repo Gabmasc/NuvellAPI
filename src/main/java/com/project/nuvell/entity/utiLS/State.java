@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Embeddable
-public class StateUtiLS {
+public class State {
 
     private static final List<String> StateOfBrazil = Arrays.asList("Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará", "Espirito Santo", "Goiás", "Distrito Federal",
             "Maranhão","Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará", "Paraiba", "Paraiba", "Paraná", "Pernambuco", "Piauí", "Rio de Janeiro", "Rio grande do norte",
@@ -14,10 +14,10 @@ public class StateUtiLS {
 
     private String value;
 
-    public StateUtiLS() {
+    public State() {
     }
 
-    public StateUtiLS(String value) {
+    public State(String value) {
         validateValue(value);
         this.value = value;
     }

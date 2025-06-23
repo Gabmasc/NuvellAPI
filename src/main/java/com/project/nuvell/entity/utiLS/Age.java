@@ -5,14 +5,14 @@ import jakarta.persistence.Embeddable;
 import javax.management.InvalidAttributeValueException;
 
 @Embeddable
-public class AgeUtiLs {
+public class Age {
 
     private Integer age;
 
-    public AgeUtiLs() {
+    public Age() {
     }
 
-    public AgeUtiLs(Integer age) throws InvalidAttributeValueException {
+    public Age(Integer age) throws InvalidAttributeValueException {
         if (validateAge(age))
             this.age = age;
     }

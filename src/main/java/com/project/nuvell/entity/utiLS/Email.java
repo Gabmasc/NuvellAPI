@@ -2,30 +2,30 @@ package com.project.nuvell.entity.utiLS;
 
 import jakarta.persistence.Embeddable;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Embeddable
-public class EmailUtiLS {
+public class Email {
 
     private String email;
 
-    public EmailUtiLS() {
+    private static final Pattern EMAIL_PATTERN_REGEX =
+            Pattern.compile("[a-z0-9!#$%&'*+=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
+
+    public Email() {
     }
 
-    public EmailUtiLS(String email) {
+    public Email(String email) {
         validateEmail(email);
         this.email = email;
     }
 
     public void validateEmail(String emailInput){
-        Pattern p = Pattern.compile("[a-z0-9!#$%&'*+=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
-        Matcher m = p.matcher(emailInput);
 
         if (emailInput.isEmpty()){
-            throw new IllegalArgumentException("camp null is not allowed");
+            throw new IllegalArgumentException("Email cannot be empty");
         }
-        if (!m.matches()){
+        if (!EMAIL_PATTERN_REGEX.matcher(emailInput).matches()){
             throw new IllegalArgumentException("Camp Invalid");
         }
 

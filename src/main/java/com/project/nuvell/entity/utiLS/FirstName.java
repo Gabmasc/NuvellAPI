@@ -6,16 +6,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Embeddable
-public class SocialNameUtiLS {
+public class FirstName {
 
-    private String socialname;
+    private String firstname;
 
-    public SocialNameUtiLS() {
+    public FirstName() {
     }
 
-    public SocialNameUtiLS(String socialname) {
-        validateName(socialname);
-        this.socialname = socialname;
+    public FirstName(String firstname) {
+        validateName(firstname);
+        this.firstname = firstname;
     }
 
     public void validateName(String nameInput){
@@ -26,18 +26,18 @@ public class SocialNameUtiLS {
             throw new IllegalArgumentException("Null camp is not allowed");
         }
         if (!m.matches()){
-            throw new IllegalArgumentException("Input Invalid");
+            throw new IllegalArgumentException("Invalid Input");
         }
 
-        this.socialname = nameInput;
+        this.firstname = nameInput;
     }
 
     public String getValue(){
-        return socialname;
+        return firstname;
     }
 
-    public void updateSocialName(String newName){
+    public void updateFirstName(String newName){
         validateName(newName);
-        this.socialname = newName;
+        this.firstname = newName;
     }
 }

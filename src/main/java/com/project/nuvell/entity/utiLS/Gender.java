@@ -2,14 +2,14 @@ package com.project.nuvell.entity.utiLS;
 
 import jakarta.persistence.Embeddable;
 @Embeddable
-public class GenderUtils {
+public class Gender {
 
     private String gender;
 
-    public GenderUtils() {
+    public Gender() {
     }
 
-    public GenderUtils(String gender) {
+    public Gender(String gender) {
         validateGender(gender);
         this.gender = gender;
     }
