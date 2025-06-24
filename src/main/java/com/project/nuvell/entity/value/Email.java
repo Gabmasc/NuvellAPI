@@ -1,5 +1,6 @@
 package com.project.nuvell.entity.value;
 
+import com.project.nuvell.infra.exception.InvalidEmailException;
 import jakarta.persistence.Embeddable;
 
 import java.util.regex.Pattern;
@@ -21,14 +22,9 @@ public class Email {
     }
 
     public void validateEmail(String emailInput){
-
-        if (emailInput.isEmpty()){
-            throw new IllegalArgumentException("Email cannot be empty");
+        if (emailInput == null || emailInput.isEmpty() || !EMAIL_PATTERN_REGEX.matcher(emailInput).matches()){
+            throw new InvalidEmailException("Email Invalid " + emailInput);
         }
-        if (!EMAIL_PATTERN_REGEX.matcher(emailInput).matches()){
-            throw new IllegalArgumentException("Camp Invalid");
-        }
-
         this.email = emailInput;
     }
 

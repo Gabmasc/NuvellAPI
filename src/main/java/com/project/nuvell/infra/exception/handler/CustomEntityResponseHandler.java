@@ -32,15 +32,6 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(InvalidCpfException.class)
-    public final ResponseEntity<ExceptionResponse> invalidCpfException(Exception ex, WebRequest request){
-        ExceptionResponse response = new ExceptionResponse(
-                new Date(),
-                ex.getMessage(),
-                request.getDescription(false));
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-    }
-
     @ExceptionHandler(InvalidContactException.class)
     public final ResponseEntity<ExceptionResponse> invalidContactException(Exception ex, WebRequest request){
         ExceptionResponse response = new ExceptionResponse(
@@ -51,7 +42,21 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(InvalidCpfException.class)
+    public final ResponseEntity<ExceptionResponse> invalidCpfException(Exception ex, WebRequest request){
+        ExceptionResponse response = new ExceptionResponse(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false));
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
 
-
-
+    @ExceptionHandler(InvalidEmailException.class)
+    public final ResponseEntity<ExceptionResponse> invalidEmailException(Exception ex, WebRequest request){
+        ExceptionResponse response = new ExceptionResponse(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false));
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
 }
