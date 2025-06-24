@@ -1,6 +1,8 @@
 package com.project.nuvell.infra.exception.handler;
 
 import com.project.nuvell.infra.exception.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -17,8 +19,11 @@ import java.util.Date;
 @RestControllerAdvice
 public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler {
 
+    private static final Logger logger = LoggerFactory.getLogger(CustomEntityResponseHandler.class);
+
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<ExceptionResponse> handleAllExceptions(Exception ex, WebRequest request){
+        logger.error("Error interno nao tratado: {} - Path: {}", ex.getMessage(), request.getDescription(false), ex);
         ExceptionResponse response = new ExceptionResponse(
                 new Date(),
                 ex.getMessage(),
@@ -36,7 +41,7 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
 
         ExceptionResponse response = new ExceptionResponse(
                 new Date(),
-                "Erro no corpo da requisição" + cause,
+                "Erro no corpo da requisição: " + cause,
                 request.getDescription(false));
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
@@ -51,6 +56,7 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
 
     @ExceptionHandler(InvalidAgeException.class)
     public final ResponseEntity<ExceptionResponse> invalidAgeException(Exception ex, WebRequest request){
+        logger.warn("Idade Invalida detectada: {}", ex.getMessage());
         ExceptionResponse response = new ExceptionResponse(
                 new Date(),
                 ex.getMessage(),
@@ -60,6 +66,7 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
 
     @ExceptionHandler(InvalidContactException.class)
     public final ResponseEntity<ExceptionResponse> invalidContactException(Exception ex, WebRequest request){
+        logger.warn("Contato Invalido detectado: {}", ex.getMessage());
         ExceptionResponse response = new ExceptionResponse(
                 new Date(),
                 ex.getMessage(),
@@ -70,6 +77,7 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
 
     @ExceptionHandler(InvalidCpfException.class)
     public final ResponseEntity<ExceptionResponse> invalidCpfException(Exception ex, WebRequest request){
+        logger.warn("Cpf Invalido detectado: {}", ex.getMessage());
         ExceptionResponse response = new ExceptionResponse(
                 new Date(),
                 ex.getMessage(),
@@ -79,6 +87,7 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
 
     @ExceptionHandler(InvalidEmailException.class)
     public final ResponseEntity<ExceptionResponse> invalidEmailException(Exception ex, WebRequest request){
+        logger.warn("Email Invalido detectado: {}", ex.getMessage());
         ExceptionResponse response = new ExceptionResponse(
                 new Date(),
                 ex.getMessage(),
