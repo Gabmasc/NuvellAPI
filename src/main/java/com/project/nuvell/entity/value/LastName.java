@@ -1,4 +1,4 @@
-package com.project.nuvell.entity.utiLS;
+package com.project.nuvell.entity.value;
 
 import jakarta.persistence.Embeddable;
 
@@ -6,16 +6,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Embeddable
-public class SocialName {
+public class LastName {
 
-    private String socialname;
+    private String lastname;
 
-    public SocialName() {
+    public LastName() {
     }
 
-    public SocialName(String socialname) {
-        validateName(socialname);
-        this.socialname = socialname;
+    public LastName(String lastname) {
+        validateName(lastname);
+        this.lastname = lastname;
     }
 
     public void validateName(String nameInput){
@@ -26,18 +26,18 @@ public class SocialName {
             throw new IllegalArgumentException("Null camp is not allowed");
         }
         if (!m.matches()){
-            throw new IllegalArgumentException("Input Invalid");
+            throw new IllegalArgumentException("Invalid Input");
         }
 
-        this.socialname = nameInput;
+        this.lastname = nameInput;
     }
 
     public String getValue(){
-        return socialname;
+        return lastname;
     }
 
-    public void updateSocialName(String newName){
+    public void updateLastName(String newName){
         validateName(newName);
-        this.socialname = newName;
+        this.lastname = newName;
     }
 }

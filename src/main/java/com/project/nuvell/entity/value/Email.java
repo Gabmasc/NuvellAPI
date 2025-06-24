@@ -1,4 +1,4 @@
-package com.project.nuvell.entity.utiLS;
+package com.project.nuvell.entity.value;
 
 import jakarta.persistence.Embeddable;
 

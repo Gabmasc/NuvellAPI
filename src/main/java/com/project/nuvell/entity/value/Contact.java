@@ -1,5 +1,6 @@
-package com.project.nuvell.entity.utiLS;
+package com.project.nuvell.entity.value;
 
+import com.project.nuvell.infra.exception.InvalidContactException;
 import jakarta.persistence.Embeddable;
 
 import java.util.regex.Matcher;
@@ -19,18 +20,21 @@ public class Contact {
     }
 
     public boolean validateContact(String contact){
+        if (contact == null || contact.isEmpty()){
+            throw new InvalidContactException("Cannot be null");
+        }
 
         Pattern p = Pattern.compile("^(\\(?\\d{2}\\)?)?\\s?(\\d{5})\\-?(\\d{4})$");
         Matcher m = p.matcher(contact);
 
         if (!m.matches()){
-            throw new IllegalArgumentException("Invalid Input");
+            throw new InvalidContactException("Invalid Input " + contact);
         }
         return true;
     }
     public String formattedContact(String contact){
         if (contact.length() != 11){
-            throw new IllegalStateException("Contact format Invalid");
+            throw new InvalidContactException("Contact format Invalid " + contact);
         }
         String ddd = contact.substring(0,2);
         String firstPart = contact.substring(2,7);
@@ -43,10 +47,6 @@ public class Contact {
     }
 
     public void updateContact(String newContact){
-        if (newContact.isEmpty()){
-            throw new IllegalArgumentException("Cant be null");
-        }
-
         validateContact(newContact);
         this.contact = newContact;
     }

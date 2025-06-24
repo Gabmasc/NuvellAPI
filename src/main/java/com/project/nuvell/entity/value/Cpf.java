@@ -1,5 +1,6 @@
-package com.project.nuvell.entity.utiLS;
+package com.project.nuvell.entity.value;
 
+import com.project.nuvell.infra.exception.InvalidCpfException;
 import jakarta.persistence.Embeddable;
 @Embeddable
 public class Cpf {
@@ -16,11 +17,11 @@ public class Cpf {
 
     public void validate(String cpfValue){
         if (cpfValue == null || cpfValue.isEmpty()){
-            throw new IllegalArgumentException("Cpf cannot be empty");
+            throw new InvalidCpfException("Cpf cannot be empty");
         }
 
         if (!validateCpf(cpfValue)){
-            throw new IllegalArgumentException("Invalid Cpf");
+            throw new InvalidCpfException("Invalid Cpf " + cpfValue);
         }
     }
 
@@ -28,7 +29,7 @@ public class Cpf {
 
         String cpf = normalizeCpf(value);
         if (cpf.length() != 11 || cpf.matches("(\\d)\\1{10}")){
-            throw new IllegalArgumentException("Invalid CPF");
+            throw new InvalidCpfException("Invalid CPF" + value);
         }
 
         int[] digits = new int[11];

@@ -1,12 +1,12 @@
 package com.project.nuvell.entity;
 
-import com.project.nuvell.entity.utiLS.*;
+import com.project.nuvell.entity.value.*;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity(name = "tb_UserEscort")
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"cpf", "email", "contact"})})
+@Table(uniqueConstraints = {@UniqueConstraint(name = "UniqueCpfAndEmailAndContact",columnNames = {"cpf", "email", "contact"})})
 public class UserEscort implements Serializable {
     private static final long serialVersionUID = 1L;
 
