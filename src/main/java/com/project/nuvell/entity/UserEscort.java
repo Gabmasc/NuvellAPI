@@ -3,6 +3,7 @@ package com.project.nuvell.entity;
 import com.project.nuvell.entity.value.*;
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity(name = "tb_UserEscort")
@@ -37,7 +38,7 @@ public class UserEscort implements Serializable {
 
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "value", column = @Column(name = "age", nullable = false))
+            @AttributeOverride(name = "value", column = @Column(name = "Age", nullable = false))
     })
     private Age age;
 
@@ -65,12 +66,15 @@ public class UserEscort implements Serializable {
     })
     private Gender gender;
 
+    @Column(name = "created_At", nullable = false, updatable = false)
+    private LocalDateTime created_At;
+
 
     public UserEscort() {
     }
 
     public UserEscort(FirstName firstName, LastName lastName, SocialName socialName , Cpf cpf,
-                      Age age, Email email, Contact contact, State state, Gender gender) {
+                      Age age, Email email, Contact contact, State state, Gender gender, LocalDateTime createdAt) {
 
         this.firstName = firstName;
         this.lastName = lastName;
@@ -81,6 +85,7 @@ public class UserEscort implements Serializable {
         this.contact = contact;
         this.state = state;
         this.gender = gender;
+        this.created_At = createdAt;
     }
 
     public Long getId() {
@@ -98,6 +103,7 @@ public class UserEscort implements Serializable {
     public String getState() { return state.getValue();}
     public String getGender() { return gender.getValue();}
     public String getEmail() { return email.getValue();}
+    public LocalDateTime getCreatedAt() {return created_At;}
 
     public void updateFirstName(String newName){ firstName.updateFirstName(newName);}
     public void updateLastName(String newName){ lastName.updateLastName(newName);}
@@ -113,6 +119,11 @@ public class UserEscort implements Serializable {
     }
     public void updateGender(String newGender){
         gender.updateGender(newGender);
+    }
+
+    @PrePersist
+    protected void onCreate(){
+        created_At = LocalDateTime.now();
     }
 
     @Override

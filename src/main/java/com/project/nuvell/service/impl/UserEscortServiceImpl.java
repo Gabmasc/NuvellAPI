@@ -43,7 +43,6 @@ public class UserEscortServiceImpl implements UserEscortService {
     public UserEscort create(UserEscort userEscort) {
         logger.info("Creating a User Escort");
 
-
         return this.userEscortRepository.save(userEscort);
     }
 

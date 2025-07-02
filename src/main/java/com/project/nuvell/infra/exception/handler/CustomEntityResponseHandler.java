@@ -55,7 +55,7 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
     }
 
     @ExceptionHandler(InvalidAgeException.class)
-    public final ResponseEntity<ExceptionResponse> invalidAgeException(Exception ex, WebRequest request){
+    public final ResponseEntity<ExceptionResponse> invalidAgeException(InvalidAgeException ex, WebRequest request){
         logger.warn("Idade Invalida detectada: {}", ex.getMessage());
         ExceptionResponse response = new ExceptionResponse(
                 new Date(),
@@ -65,7 +65,7 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
     }
 
     @ExceptionHandler(InvalidContactException.class)
-    public final ResponseEntity<ExceptionResponse> invalidContactException(Exception ex, WebRequest request){
+    public final ResponseEntity<ExceptionResponse> invalidContactException(InvalidContactException ex, WebRequest request){
         logger.warn("Contato Invalido detectado: {}", ex.getMessage());
         ExceptionResponse response = new ExceptionResponse(
                 new Date(),
@@ -76,7 +76,7 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
     }
 
     @ExceptionHandler(InvalidCpfException.class)
-    public final ResponseEntity<ExceptionResponse> invalidCpfException(Exception ex, WebRequest request){
+    public final ResponseEntity<ExceptionResponse> invalidCpfException(InvalidCpfException ex, WebRequest request){
         logger.warn("Cpf Invalido detectado: {}", ex.getMessage());
         ExceptionResponse response = new ExceptionResponse(
                 new Date(),
@@ -86,7 +86,7 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
     }
 
     @ExceptionHandler(InvalidEmailException.class)
-    public final ResponseEntity<ExceptionResponse> invalidEmailException(Exception ex, WebRequest request){
+    public final ResponseEntity<ExceptionResponse> invalidEmailException(InvalidEmailException ex, WebRequest request){
         logger.warn("Email Invalido detectado: {}", ex.getMessage());
         ExceptionResponse response = new ExceptionResponse(
                 new Date(),
