@@ -21,19 +21,22 @@ public class UserEscortController {
 
     @GetMapping
     public ResponseEntity<List<UserEscort>> getAll(){
-        var user = service.findAll();
-        return ResponseEntity.ok(user);
+        List<UserEscort> users = service.findAll();
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserEscort> getById(@PathVariable Long id){
-        var user = service.findById(id);
+    public ResponseEntity<UserEscort> getById(@PathVariable("id") Long id){
+        UserEscort user = service.findById(id);
+        if (user == null){
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(user);
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserEscort> post(@RequestBody UserEscort newUser){
-        var user = service.create(newUser);
+    public ResponseEntity<UserEscort> post(@RequestBody UserEscort user){
+        service.create(user);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(user.getId())
@@ -43,9 +46,10 @@ public class UserEscortController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserEscort> update(@PathVariable Long id, @RequestBody UserEscort userToUpdate){
+    public ResponseEntity<Void> update(@PathVariable("id") Long id,
+                                       @RequestBody UserEscort userToUpdate){
         var user = service.update(userToUpdate);
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")

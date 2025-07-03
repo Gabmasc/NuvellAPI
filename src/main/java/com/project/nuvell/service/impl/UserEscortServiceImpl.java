@@ -16,7 +16,6 @@ public class UserEscortServiceImpl implements UserEscortService {
     private Logger logger = LoggerFactory.getLogger(UserEscortServiceImpl.class.getName());
 
     private final UserEscortRepository userEscortRepository;
-    private UserEscort userToUpdate;
 
     public UserEscortServiceImpl(UserEscortRepository userEscortRepository) {
         this.userEscortRepository = userEscortRepository;

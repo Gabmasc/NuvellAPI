@@ -40,4 +40,11 @@ public class Age {
         validateAge(newAge);
         this.age = newAge;
     }
+
+    @Override
+    public String toString() {
+        return "Age{" +
+                "age=" + age +
+                '}';
+    }
 }

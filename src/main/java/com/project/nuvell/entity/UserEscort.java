@@ -66,7 +66,7 @@ public class UserEscort implements Serializable {
     })
     private Gender gender;
 
-    @Column(name = "created_At", nullable = false, updatable = false)
+    @Column(name = "created_At", updatable = false)
     private LocalDateTime created_At;
 
 
