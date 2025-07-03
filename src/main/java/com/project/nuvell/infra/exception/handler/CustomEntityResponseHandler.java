@@ -54,6 +54,17 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
         return new ResponseEntity<>(response, httpStatus);
     }
 
+    @ExceptionHandler(NullCampExceptionHandler.class)
+    public final ResponseEntity<ExceptionResponse> nullCampException(NullCampExceptionHandler ex, WebRequest request){
+        logger.warn("Campos com dados Nulos detectados: {}", ex.getMessage());
+        ExceptionResponse response = new ExceptionResponse(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false));
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(InvalidAgeException.class)
     public final ResponseEntity<ExceptionResponse> invalidAgeException(InvalidAgeException ex, WebRequest request){
         logger.warn("Idade Invalida detectada: {}", ex.getMessage());

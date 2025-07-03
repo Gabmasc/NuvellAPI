@@ -1,5 +1,6 @@
 package com.project.nuvell.entity.value;
 
+import com.project.nuvell.infra.exception.NullCampExceptionHandler;
 import jakarta.persistence.Embeddable;
 
 import java.util.regex.Matcher;
@@ -20,7 +21,7 @@ public class FirstName {
 
     public void validateName(String nameInput){
         if (nameInput == null || nameInput.isEmpty()){
-            throw new IllegalArgumentException("Null camp is not allowed");
+            throw new NullCampExceptionHandler("Null camp is not allowed");
         }
         Pattern p = Pattern.compile("^.?[a-zA-Z]+.$");
         Matcher m = p.matcher(nameInput);
