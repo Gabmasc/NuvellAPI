@@ -19,12 +19,11 @@ public class LastName {
     }
 
     public void validateName(String nameInput){
-        Pattern p = Pattern.compile("^.?[a-zA-Z]+.$");
-        Matcher m = p.matcher(nameInput);
-
-        if (nameInput.isEmpty()){
+        if (nameInput == null || nameInput.isEmpty()){
             throw new IllegalArgumentException("Null camp is not allowed");
         }
+        Pattern p = Pattern.compile("^.?[a-zA-Z]+.$");
+        Matcher m = p.matcher(nameInput);
         if (!m.matches()){
             throw new IllegalArgumentException("Invalid Input");
         }

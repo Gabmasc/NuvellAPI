@@ -2,6 +2,8 @@ package com.project.nuvell.entity;
 
 import com.project.nuvell.entity.value.*;
 import jakarta.persistence.*;
+import org.hibernate.engine.internal.Cascade;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -54,12 +56,8 @@ public class UserEscort implements Serializable {
     })
     private Contact contact;
 
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "value", column = @Column(name = "state", nullable = false))
-    })
-    private State state;
-
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    private Address address;
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "value", column = @Column(name = "gender", nullable = false))
@@ -74,7 +72,7 @@ public class UserEscort implements Serializable {
     }
 
     public UserEscort(FirstName firstName, LastName lastName, SocialName socialName , Cpf cpf,
-                      Age age, Email email, Contact contact, State state, Gender gender, LocalDateTime createdAt) {
+                      Age age, Email email, Contact contact,Address address ,Gender gender, LocalDateTime createdAt) {
 
         this.firstName = firstName;
         this.lastName = lastName;
@@ -83,7 +81,7 @@ public class UserEscort implements Serializable {
         this.age = age;
         this.email = email;
         this.contact = contact;
-        this.state = state;
+        this.address = address;
         this.gender = gender;
         this.created_At = createdAt;
     }
@@ -100,7 +98,7 @@ public class UserEscort implements Serializable {
     public String getCpf() { return this.cpf.getValue();}
     public Integer getAge() { return this.age.getValue();}
     public String getContact() { return this.contact.getValue();}
-    public String getState() { return state.getValue();}
+    public Address getAddress() {return address;}
     public String getGender() { return gender.getValue();}
     public String getEmail() { return email.getValue();}
     public LocalDateTime getCreatedAt() {return created_At;}
@@ -114,12 +112,10 @@ public class UserEscort implements Serializable {
     public void updateContact(String newContact){
         contact.updateContact(newContact);
     }
-    public void updateState(String newState){
-        state.updateValue(newState);
-    }
     public void updateGender(String newGender){
         gender.updateGender(newGender);
     }
+    public void setAddress(Address address) {this.address = address;}
 
     @PrePersist
     protected void onCreate(){
