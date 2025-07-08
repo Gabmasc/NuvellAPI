@@ -74,6 +74,7 @@ public class UserEscortServiceImpl implements UserEscortService {
         userInDatabase.updateContact(userToUpdate.getContact());
         userInDatabase.updateEmail(userToUpdate.getEmail());
         userInDatabase.updateGender(userToUpdate.getGender());
+        userInDatabase.setAddress(userToUpdate.getAddress());
 
         return userEscortRepository.save(userInDatabase);
     }

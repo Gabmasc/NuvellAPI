@@ -2,7 +2,6 @@ package com.project.nuvell.entity;
 
 import com.project.nuvell.entity.value.*;
 import jakarta.persistence.*;
-import org.hibernate.engine.internal.Cascade;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -56,7 +55,7 @@ public class UserEscort implements Serializable {
     })
     private Contact contact;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private Address address;
     @Embedded
     @AttributeOverrides({
@@ -103,7 +102,7 @@ public class UserEscort implements Serializable {
     public String getEmail() { return email.getValue();}
     public LocalDateTime getCreatedAt() {return created_At;}
 
-    public void updateFirstName(String newName){ firstName.updateFirstName(newName);}
+    public void updateFirstName(String newName){ firstName.withUpdatedValue(newName);}
     public void updateLastName(String newName){ lastName.updateLastName(newName);}
     public void updateSocialName(String newName){ socialName.updateSocialName(newName);}
     public void updateCpf(String newCpf) { cpf.updateValue(newCpf);}
@@ -116,6 +115,9 @@ public class UserEscort implements Serializable {
         gender.updateGender(newGender);
     }
     public void setAddress(Address address) {this.address = address;}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @PrePersist
     protected void onCreate(){

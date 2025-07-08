@@ -9,34 +9,32 @@ import java.util.regex.Pattern;
 @Embeddable
 public class FirstName {
 
-    private String firstname;
+    private String value;
 
-    public FirstName() {
-    }
+    public FirstName() {}
 
     public FirstName(String firstname) {
         validateName(firstname);
-        this.firstname = firstname;
+        this.value = firstname;
     }
 
     public void validateName(String nameInput){
         if (nameInput == null || nameInput.isEmpty()){
-            throw new NullCampExceptionHandler("Null camp is not allowed");
+            throw new NullCampExceptionHandler("Null field is not allowed");
         }
         Pattern p = Pattern.compile("^.?[a-zA-Z]+.$");
         Matcher m = p.matcher(nameInput);
         if (!m.matches()){
             throw new IllegalArgumentException("Invalid Input");
         }
-        this.firstname = nameInput;
+        this.value = nameInput;
     }
 
     public String getValue(){
-        return firstname;
+        return value;
     }
 
-    public void updateFirstName(String newName){
-        validateName(newName);
-        this.firstname = newName;
+    public FirstName withUpdatedValue(String newValue){
+        return new FirstName(newValue);
     }
 }

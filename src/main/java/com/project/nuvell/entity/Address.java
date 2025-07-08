@@ -28,11 +28,11 @@ public class Address implements Serializable {
             throw new NullCampExceptionHandler("O campo de cep não pode ser nulo");
         }
 
-        cepToValidate.replaceAll("[^0-9]", "");
+        cepToValidate.replaceAll("-", "");
         if (cepToValidate.length() != 8){
             throw new IllegalArgumentException("O cep é inválido");
         }
-        this.cep = cepToValidate;
+        this.cep = cepToValidate.substring(0,5) + "-" + cepToValidate.substring(5);
     }
 
     public String getCep() {return cep;}
